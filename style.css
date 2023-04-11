@@ -1,0 +1,11 @@
+body {
+	font: 16px/20px Arial
+}
+#map {
+  position:relative;
+  width: 800px;
+  height: 500px;
+  margin: auto;
+  padding-bottom: 20px;
+  padding-top: 170px;
+}
