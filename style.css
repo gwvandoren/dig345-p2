@@ -1,9 +1,261 @@
 html, body {
-  font: 16px/20px Arial;
   height: 100%;
   margin: 0;
   padding: 0;
+  /* stop scroll */
+  overflow:hidden;
 }
+
+/* HOME (index) PAGE */
+
+#btn{
+  font-size: 37px;
+  font-family: Optima;
+  z-index: 999;
+}
+
+#btn:hover{
+  cursor:pointer;
+}
+
+#icon {
+  width: 149px;
+  height: 210.5px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding-bottom:40px;
+  animation: bounce 1.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes bounce {
+  from { top: 0px;}
+  to { top: 400px;}
+}
+
+.title{
+  font-size:67px;
+  font-weight:bold;
+  text-align:center;
+  font-family: Optima;
+  letter-spacing: .3rem;
+  color:#ac1a2f;
+}
+
+#abt-btn {
+  width: 47px;
+  height: 47px;
+  position:absolute;
+  margin-left:-50px;
+  left:50%;
+  bottom: 10px;
+}
+
+#abt-btn:hover{
+  cursor:pointer;
+}
+
+/* .abt{
+  padding-left: 10px;
+  padding-right: 10px;
+  position: absolute;
+  width: 45%;
+  height: 40%;
+  bottom: 0;
+  overflow: hidden;
+  background-color: #000; color: #FFF;
+  transition: all 1s;
+  border-radius: 0.28571429rem;
+  text-align:center;
+  margin-left:-400px;
+  left:80%;
+}
+
+.abt.hide {
+  top: 100%;
+  height: 0;
+} */
+
+.container {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.centered{
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+/* GET (getYourData) PAGE */
+body.getYourData{
+  background-color: black;
+  box-sizing:content-box;
+}
+
+input[type=text], select, textarea {
+  width: 97%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  font-family: Optima;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+textarea#message{
+  height:70px;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+  font-family: Optima;
+  color: white;
+}
+
+input[type=submit] {
+  background-color: black;
+  font-family:Optima;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+
+input[type=submit]:hover {
+  background-color: white;
+  color:#ac1a2f;
+}
+
+.container-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container-get {
+  width: 800px;
+  height:350px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #ac1a2f;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.col-25 {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+
+/* .container-get{
+  position: relative;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color:#ac1a2f;
+  width:50%;
+  height:50%;
+  display: flex;
+  justify-content: center;
+  border-radius: 0.28571429rem;
+  align-items: center;
+}
+
+#from-input,#subject-input, #message-text{
+  padding-bottom: 10px;
+  font-family: Optima;
+  width:50%;
+  color:white;
+}
+
+input[name="email"],
+input[name="subject"] {
+  width: 200px;
+  font-family: Optima;
+}
+
+textarea, input[value="send"]{
+  font-family:Optima;
+} */
+
+/* #bckgrd{
+  position:absolute;
+  width: 30px;
+  height: 48px;
+  top:5px;
+  right:5px;
+  background-color:white;
+  border-radius:100%;
+  padding-top:8px;
+  padding-left:7px;
+  padding-right:7px;
+  padding-bottom:4px;
+
+} */
+
+#get-bckBtn{
+  width:40px;
+  height:40px;
+  padding-top:10px;
+  padding-left:10px;
+
+}
+
+#get-bckBtn:hover{
+  cursor:pointer;
+}
+
+/* VIZ (vizYourData) PAGE */
 
 #map {
   height: 100%
@@ -19,10 +271,6 @@ html, body {
   padding-bottom:25px;
 }
 
-input[name="email"],
-input[name="subject"] {
-  width: 200px;
-}
 
 #infoBox{
   flex-direction:column;
@@ -41,12 +289,14 @@ input[name="subject"] {
 }
 
 #info{
-  padding-top:10px;
+  padding-top:40px;
   padding-left:5px;
 }
 
 #file-container{
   padding: 50px 0px 10px 50px;
+  position:absolute;
+  bottom: 10px;
   /* top right bottom left */
 }
 
