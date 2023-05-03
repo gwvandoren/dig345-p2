@@ -46,12 +46,13 @@ html, body {
 }
 
 #abt-btn {
-  width: 47px;
-  height: 47px;
   position:absolute;
-  margin-left:-50px;
-  left:50%;
-  bottom: 10px;
+  width: 40px;
+  height:40px;
+  top:0;
+  left:0;
+  padding-left: 10px;
+  padding-top: 10px;
 }
 
 #abt-btn:hover{
@@ -274,7 +275,7 @@ textarea, input[value="send"]{
 
 #infoBox{
   flex-direction:column;
-  background-color:white;
+  background-color: white;
   box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
   border-radius: 0.28571429rem;
   border: 1px solid rgba(34,36,38,.15);
@@ -285,6 +286,7 @@ textarea, input[value="send"]{
   left: 10px;
   height: 75%;
   overflow: scroll;
+  font-family:optima;
   padding: 20px;
 }
 
@@ -303,11 +305,11 @@ textarea, input[value="send"]{
 #back-btn{
   position:absolute;
   width: 30px;
-  height:25px;
+  height:30px;
   top:0;
   left:0;
-  padding-left: 5px;
-  padding-top: 5px;
+  padding-left: 10px;
+  padding-top: 10px;
 }
 
 #back-btn:hover{
