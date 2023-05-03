@@ -8,16 +8,39 @@
   <title>Document</title>
 </head>
 <body>
-  <p> To: chbradley@davidson.edu, gadaily@davidson.edu </p>
-  <p> Subject: Request for CatCard Data</p>
-  <p> Message: Dear CatCard Services,
-    I am emailing to request my personal CatCard locational data
-    (card swipe data). Since it is my personal data, I do not need
-    to sign a FERPA waiver. I would only like my swipe data for one
-    day, it does not matter which day it is. Thank you and have a good one!
-  </p>
+  <form action="mailto:chbradley@davidson.edu, gadaily@davidson.edu" enctype="text/plain" target="_blank">
 
-  <button onclick="window.location.href='index.html'"> back </button>
+    Email:<br>
+    <input type="email" name="email" placeholder="Enter your Davidson email"><br>
 
-</body>
+    Subject:<br>
+    <input type="text" name="subject" value="Request for CatCard Data"><br>
+
+    Message:<br>
+    <textarea name="body" rows="8" cols="40"> I am emailing to request my personal CatCard locational data (card swipe data). Since it is my personal data, I do not need to sign a FERPA waiver. I would only like my swipe data for one day, it does not matter which day it is. Thank you and have a good one!</textarea><br>
+
+    <!-- <input type="submit" value="Send"> -->
+    <input type="button" id="sendBtn" value="Send">
+
+    <div id="reminderPopup" class="popup">
+      <div class="popupContent">
+        <p> Remember to come back to this site once you receive your CatCard data! </p>
+      </div>
+      <button id="closePopup"> Got it, now send email </button>
+    </div>
+
+    <button onclick="window.location.href='index.html'"> back </button>
+
+  </body>
 </html>
+
+<script type="text/javascript">
+    sendBtn.addEventListener("click", function(){
+      reminderPopup.classList.add("show");
+    })
+
+    closePopup.addEventListener("click", function () {
+      reminderPopup.classList.remove("show");
+    });
+
+</script>

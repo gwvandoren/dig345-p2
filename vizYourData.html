@@ -1,33 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel='stylesheet' href='style.css' />
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <link rel='stylesheet' href='style.css' />
 
-  <title>Document</title>
-</head>
-<body>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-  <div id="map"></div>
+    <!-- JQuery CSS -->
+    <link rel='stylesheet' href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
 
-  <script>var map = L.map('map').setView([35.5014,-80.845296], 17);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-  </script>
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
+    <!-- Leaflet.markercluster -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/"></script>
 
-  <!-- <iframe src='/leaflet/map.js' height="200" width="300"></iframe> -->
+    <!-- JQuery, JQuery UI -->
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 
-  <input type="file" id="uploadCatCardData" accept=".xlsx">
+    <!-- Mobile touch support -->
+    <script
+      src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
 
-  <button id="back-btn" onclick="window.location.href='index.html'"> back </button>
-</body>
+    <!-- Slider Control -->
+    <script src="./SliderControl.js"> </script>
+
+    <!-- Reader Locations geoJSON -->
+    <script src="./readerLocations.js"> </script>
+
+    <title>viz data</title>
+
+  </head>
+
+  <body>
+
+    <!-- Upload CatCard Data -->
+    <div class="container-fluid">
+      <div class ="col" id="infoBox">
+        <img id="back-btn" onclick="window.location.href='index.html'" src="back-btn-img.png"/>
+        <div class="row-sm-4" id="info">
+          <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in lorem varius,
+            placerat lectus nec, aliquet diam. Mauris finibus sollicitudin augue, vitae rutrum
+            sapien dapibus sed. Sed at lacus dignissim, pulvinar velit quis, scelerisque ante.
+            Donec quis diam in massa posuere posuere. Nunc congue ultrices enim, non iaculis
+            augue interdum quis. Proin id sem libero. Vestibulum ante ipsum primis in faucibus
+            orci luctus et ultrices posuere cubilia curae; Sed nisl arcu, dapibus in maximus quis,
+            pretium a nisi.</p>
+        </div>
+        <div class="row-sm-4" id="file-container">
+          <input type="file" id="catcardData" accept=".xlsx">
+        </div>
+
+        <div class="row-sm-4">
+          <div id="sld-container"> <p> hii </p> </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="map"></div>
+
+    <script>
+      var sliderControl = null;
+
+      var mapOptions = {
+        center: [35.5012151629241, -80.84664812347926],
+        zoom: 17,
+        zoomControl:false
+      }
+      // var map = L.map('map').setView([35.5016, -80.843954], 17);
+
+      var map = L.map('map', mapOptions);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      L.control.zoom({
+        position: 'topright'
+      }).addTo(map);
+
+      var newPosSlider = document.querySelector(".slider");
+
+    // var sliderControl = L.control.sliderControl({
+    //   position: "topright",
+    //   layer: layerGroup,
+    // });
+
+    // map.addControl(sliderControl);
+
+    // sliderControl.startSlider();
+    </script>
+
+  </body>
+
 </html>
+
+<script>
+  // Converts CatCard data XLSX to JSON, including cleaning up that data
+  document.querySelector('input').addEventListener('change', function () {
+    var reader = new FileReader();
+
+    reader.onload = function () {
+      var arrayBuffer = this.result,
+        array = new Uint8Array(arrayBuffer),
+        binaryString = String.fromCharCode.apply(null, array);
+
+      /* Call XLSX */
+      var workbook = XLSX.read(binaryString, {
+        type: "binary"
+      });
+
+      /* DO SOMETHING WITH workbook HERE */
+      var first_sheet_name = workbook.SheetNames[0];
+      /* Get worksheet */
+      var worksheet = workbook.Sheets[first_sheet_name];
+
+      ccData = XLSX.utils.sheet_to_json(worksheet, {
+        raw: false
+      });
+
+      // Formatting to only have Date/Time and Location
+      for (i in ccData) {
+        delete ccData[i]["Description"];
+        delete ccData[i]["Node Date/Time"];
+        delete ccData[i]["Who"];
+
+        // Formmatting Date and Time correctly
+        ccData[i]["Date/Time"] = new Date(ccData[i]["Date/Time"]);
+
+        let onlyDate = ccData[i]["Date/Time"].toISOString().substr(0, 10);
+        let onlyTime = ccData[i]["Date/Time"].toTimeString().substr(0, 5);
+
+        let bothDateTime = [onlyDate, onlyTime];
+        ccData[i]["Date/Time"] = bothDateTime.join(' ');
+      }
+
+      //console.log(ccData);
+      vizData(ccData);
+    }
+
+    reader.readAsArrayBuffer(this.files[0]);
+  });
+
+  // Function matches CatCard data to readerLocations dictionary by name to retrieve location coordinates
+  function vizData(ccData) {
+    let markers = [];
+    for (i in ccData) {
+      for (j in readerLocations['features']) {
+        if (((ccData[i].Location).search(readerLocations['features'][j].properties['name'])) >= 0) {
+          markers.push(L.marker((readerLocations['features'][j].geometry['coordinates']).reverse(), { time: ccData[i]["Date/Time"] }))
+
+          //console.log(readerLocations['features'][j].properties['name'], readerLocations['features'][j].geometry['coordinates'])
+          //console.log("YES", ccData[i].Location, readerLocations['features'][j])
+        }
+      }
+    }
+    layerGroup = L.layerGroup(markers.reverse());
+    // mcLayerGroup = L.marketClusterGroup(markers.reverse());
+    // mcLayerGroup.addLayer(L.marker(getRandomLatLng(map)));
+
+    // var mapbuttons_div = L.DomUtil.create('div', 'mapbuttons leaflet-bar leaflet-control');
+
+    var sliderControl = L.control.sliderControl({
+      position: "bottomright",
+      layer: layerGroup,
+      range: false
+    });
+
+
+    map.addControl(sliderControl);
+    // map.addLayer(mcLayerGroup);
+
+    sliderControl.startSlider();
+    // mapbuttons_div.appendChild(sliderControl.getContainer());
+  }
+
+</script>
