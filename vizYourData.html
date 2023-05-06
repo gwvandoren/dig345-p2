@@ -51,18 +51,20 @@
         <div class="row-sm-4" id="info">
           <p> Upload below your CatCard locational data file (xlsx format) emailed to you by CatCard Services.
             <br> &nbsp;
-            <br> Once uploaded, use the slider on the bottom right to see your data over time.
+            <br> Once uploaded, use the slider that appears below to see your data over time.
             <br>&nbsp;
             <br> Not visualized are the descriptions in the file which describe whether access was granted,
-            denied (with the reason in parentheses), or not completed.
+            denied (with the reason given in parentheses), or not completed.
+            <br> &nbsp;
+            <br> Also, there are CatCard readers at Lake Campus and Physical Plant but I did not code these
+            locations in an effort to be concise with the visualization.
           </p>
           <!-- Didn't code Lake Campus, Physical Plant -->
         </div>
 
-        <div class="sld-container"> <p> PLACEHOLDER </p> </div>
 
         <div class="row-sm-4" id="file-container">
-          <input type="file" id="catcardData" accept=".xlsx">
+            <input type="file" id="catcardData" accept=".xlsx">
         </div>
 
         <div id="ex-data"> <p> Want to see <a id="ex-d-link" onclick="window.location.href='myData.html'"> my data </a> instead?</p></div>
@@ -82,19 +84,20 @@
 
       var map = L.map('map', mapOptions);
 
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      //   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      // }).addTo(map);
+
+      var Jawg_Dark = L.tileLayer('https://{s}.tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
+        attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        accessToken: 'Ke0yVpVyXqpy0yT8VloHOiFY3XenzV6WnwAjIl2ZZGZW47wHzW2ognLuGWzBBrBI'
       }).addTo(map);
 
       // Positions zoom controls
       L.control.zoom({
-        position: 'topright'
+        position: 'topright',
+        minZoom:0
       }).addTo(map);
-
-      var newPosSlider = L.DomUtil.create('div', 'slider', this._container);
-      var newPosSlider = document.querySelector(".leaflet-slider");
-
-      newPosSlider.classList.add('sld-container');
 
 
 
@@ -165,10 +168,12 @@
       }
     }
     layerGroup = L.layerGroup(markers.reverse());
-    // mcLayerGroup = L.marketClusterGroup(markers.reverse());
-    // mcLayerGroup.addLayer(L.marker(getRandomLatLng(map)));
 
-    // var mapbuttons_div = L.DomUtil.create('div', 'mapbuttons leaflet-bar leaflet-control');
+    // Marker clustering ... gone wrong :(
+    // var marCluster = L.markerClusterGroup();
+    // marCluster.addLayer(markers.reverse());
+    // map.addLayer(marCluster);
+
 
     var sliderControl = L.control.sliderControl({
       position: "bottomright",
@@ -176,12 +181,10 @@
       range: false
     });
 
-
     map.addControl(sliderControl);
-    // map.addLayer(mcLayerGroup);
 
     sliderControl.startSlider();
-    // mapbuttons_div.appendChild(sliderControl.getContainer());
+
   }
 
 </script>

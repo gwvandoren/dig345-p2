@@ -39,48 +39,26 @@
           </div>
         </div>
         <div class="row">
-          <input type="submit" value="send">
+          <a id="REMIND" href="#reminder" data-reveal-id="popup">send</a>
+        </div>
+      </div>
+    </div>
+        <div id="reminder">
+          <div id="popup" class="reveal-popup">
+              <p> Remember to come back to this site once you receive your CatCard data! </p>
+              <input type="submit" value="Got it, now send email">
+          </div>
         </div>
       </form>
-    </div>
-  </div>
-
-    <!-- <div class="container-get">
-      <form action="mailto:chbradley@davidson.edu, gadaily@davidson.edu" enctype="text/plain" target="_blank">
-
-        <div id ="from-input"> <b>from:</b>&nbsp&nbsp&nbsp <input type="email" name="email" placeholder="Enter your Davidson email"><br> </div>
-
-        <div id = "subject-input"> <b>subject:</b> <input type="text" name="subject" value="Request for CatCard Data"><br> </div>
-
-        <div id="message-text" > <b>message: </b>
-
-        <textarea name="body" rows="8" cols="50"> I am emailing to request my personal CatCard locational data (card swipe data). Since it is my personal data, I do not need to sign a FERPA waiver. I would only like my swipe data since the start of the semester. Thank you and have a good one!</textarea><br> </div>
-
-        <input type="submit" value="Send">
-        <input type="submit" name="send" id="sendBtn" value="send">
-
-        <div id="reminderPopup" class="popup">
-          <div class="popupContent">
-            <p> Remember to come back to this site once you receive your CatCard data! </p>
-          </div>
-          <button id="closePopup"> Got it, now send email </button>
-        </div>
-
-      </div>
-
-      <div id="bckgrd">
-
-      </div> -->
   </body>
 </html>
 
-<!-- <script type="text/javascript">
-    sendBtn.addEventListener("click", function(){
-      reminderPopup.classList.add("show");
-    })
+<script>
+  $('#REMIND#first').click(function(){
+    $('div#reminder').show();
+  });
 
-    closePopup.addEventListener("click", function () {
-      reminderPopup.classList.remove("show");
-    }); -->
-
+  $('#REMIND#last').click(function(){
+    $('div#reminder').hide();
+  });
 </script>

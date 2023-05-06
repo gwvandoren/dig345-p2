@@ -111,7 +111,7 @@ label {
   color: white;
 }
 
-input[type=submit] {
+#REMIND {
   background-color: black;
   font-family:Optima;
   color: white;
@@ -120,9 +120,58 @@ input[type=submit] {
   border-radius: 4px;
   cursor: pointer;
   float: right;
+  text-decoration:none;
 }
 
-input[type=submit]:hover {
+#REMIND:hover {
+  background-color: white;
+  color:#ac1a2f;
+}
+
+#reminder {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  color: white;
+  font-family: Optima;
+  text-align: center;
+  visibility: hidden;
+  display:none;
+  background-color: rgba(22,22,22,0.5);
+  padding-top:90px;
+}
+
+#reminder:target {
+  visibility: visible;
+  display: block;
+}
+
+.reveal-popup {
+  background:#ac1a2f;
+  margin: 0 auto;
+  width:200px;
+  position:relative;
+  z-index:41;
+  border-radius: 5px;
+  top: 25%;
+  padding:30px;
+  -webkit-box-shadow:0 0 10px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow:0 0 10px rgba(0, 0, 0, 0.4);
+  box-shadow:0 0 10px rgba(0,0,0,0.4);
+}
+
+input[type="submit"]{
+  font-family: Optima;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  cursor: pointer;
+  text-decoration:none;
+}
+
+input[type="submit"]:hover{
   background-color: white;
   color:#ac1a2f;
 }
@@ -176,58 +225,13 @@ input[type=submit]:hover {
 }
 
 
-/* .container-get{
-  position: relative;
-  top:0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color:#ac1a2f;
-  width:50%;
-  height:50%;
-  display: flex;
-  justify-content: center;
-  border-radius: 0.28571429rem;
-  align-items: center;
-}
-
-#from-input,#subject-input, #message-text{
-  padding-bottom: 10px;
-  font-family: Optima;
-  width:50%;
-  color:white;
-}
-
-input[name="email"],
-input[name="subject"] {
-  width: 200px;
-  font-family: Optima;
-}
-
-textarea, input[value="send"]{
-  font-family:Optima;
-} */
-
-/* #bckgrd{
-  position:absolute;
-  width: 30px;
-  height: 48px;
-  top:5px;
-  right:5px;
-  background-color:white;
-  border-radius:100%;
-  padding-top:8px;
-  padding-left:7px;
-  padding-right:7px;
-  padding-bottom:4px;
-
-} */
-
 #get-bckBtn{
   width:40px;
   height:40px;
   padding-top:10px;
   padding-left:10px;
+  position:absolute;
+  z-index:999;
 
 }
 
@@ -235,8 +239,8 @@ textarea, input[value="send"]{
   cursor:pointer;
 }
 
-/* VIZ (vizYourData) PAGE */
 
+/* VIZ (vizYourData) PAGE */
 #map {
   height: 100%
   /* position:relative;
@@ -248,9 +252,13 @@ textarea, input[value="send"]{
 }
 
 .slider {
-  padding-bottom:25px;
+  position:relative;
+  bottom: 420px;
+  right: 1120px;
+  font-size: 12px;
+  font-weight:bold;
+   /* top right bottom left */
 }
-
 
 #infoBox{
   flex-direction:column;
@@ -260,10 +268,10 @@ textarea, input[value="send"]{
   border: 1px solid rgba(34,36,38,.15);
   z-index: 999;
   position: absolute;
-  width: 25%;
+  width: 27%;
   top: 10px;
   left: 10px;
-  height: 75%;
+  height: 65%;
   overflow: scroll;
   font-family:optima;
   padding: 20px;
@@ -272,24 +280,34 @@ textarea, input[value="send"]{
 #info{
   padding-top:40px;
   padding-left:5px;
+  font-size:14px;
+  text-align:center;
 }
 
+
 #file-container{
-  padding: 20px 0px 10px 50px;
+  display:flex;
+  padding: 100px 0px 10px 77px;
+  justify-content:center;
+  align-self:center;
   position:relative;
   bottom: 10px;
   /* top right bottom left */
 }
-
-.sld-container{
-  text-align:center;
-  color:green;
+input::file-selector-button {
+  font-family: Optima;
+  /* font-style:italic; */
+  color: black;
+  border: thin solid rgb(204, 204, 204);
+  border-radius: 5px;
+  cursor:pointer;
 }
 
 #ex-data{
-  text-align:right;
+  font-style:italic;
   position:relative;
-  bottom:-257px;
+  top: 25px;
+  text-align:center;
   font-size: 13px;
 }
 
@@ -305,8 +323,8 @@ textarea, input[value="send"]{
 
 #back-btn{
   position:absolute;
-  width: 30px;
-  height:30px;
+  width: 40px;
+  height:40px;
   top:0;
   left:0;
   padding-left: 10px;
@@ -317,30 +335,8 @@ textarea, input[value="send"]{
   cursor:pointer;
 }
 
-
-.popup {
-  display: none;
-  /* position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4); */
-}
-
-/* .popup-content {
-  background-color: white;
-  margin: 10% auto;
-  padding: 20px;
-  border: 1px solid #888888;
-  width: 30%;
-  font-weight: bolder;
-} */
-
-.show {
-  display: block;
+.leaflet-control-attribution.leaflet-control{
+  font-size: 11px;
 }
 
 /* ABOUT PAGE */
