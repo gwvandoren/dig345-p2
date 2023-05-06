@@ -275,10 +275,32 @@ textarea, input[value="send"]{
 }
 
 #file-container{
-  padding: 50px 0px 10px 50px;
-  position:absolute;
+  padding: 20px 0px 10px 50px;
+  position:relative;
   bottom: 10px;
   /* top right bottom left */
+}
+
+.sld-container{
+  text-align:center;
+  color:green;
+}
+
+#ex-data{
+  text-align:right;
+  position:relative;
+  bottom:-257px;
+  font-size: 13px;
+}
+
+#ex-d-link{
+  color: #ac1a2f;
+}
+#ex-d-link:hover{
+  cursor: pointer;
+  text-transform:bold;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 #back-btn{
