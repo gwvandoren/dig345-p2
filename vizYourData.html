@@ -47,11 +47,12 @@
 
     <div class="container-fluid">
       <div class ="col" id="infoBox">
-        <img id="back-btn" onclick="window.location.href='index.html'" src="back-icon-removebg-preview.png"/>
+        <img id="back-btn" onclick="window.location.href='index.html'" src="backiconRED.png"/>
         <div class="row-sm-4" id="info">
           <p> Upload below your CatCard locational data file (xlsx format) emailed to you by CatCard Services.
             <br> &nbsp;
-            <br> Once uploaded, use the slider that appears below to see your data over time.
+            <br> Once uploaded, use the slider that appears below to see your data over time. The darker
+            the marker's shadow, the more frequent you swipe at that location.
             <br>&nbsp;
             <br> Not visualized are the descriptions in the file which describe whether access was granted,
             denied (with the reason given in parentheses), or not completed.
@@ -82,16 +83,17 @@
         zoomControl:false
       }
 
+
       var map = L.map('map', mapOptions);
 
-      // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      //   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      // }).addTo(map);
-
-      var Jawg_Dark = L.tileLayer('https://{s}.tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
-        attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        accessToken: 'Ke0yVpVyXqpy0yT8VloHOiFY3XenzV6WnwAjIl2ZZGZW47wHzW2ognLuGWzBBrBI'
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
       }).addTo(map);
+
+      // var Jawg_Dark = L.tileLayer('https://{s}.tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token={accessToken}', {
+      //   attribution: '<a href="http://jawg.io" title="Tiles Courtesy of Jawg Maps" target="_blank">&copy; <b>Jawg</b>Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      //   accessToken: 'Ke0yVpVyXqpy0yT8VloHOiFY3XenzV6WnwAjIl2ZZGZW47wHzW2ognLuGWzBBrBI'
+      // }).addTo(map);
 
       // Positions zoom controls
       L.control.zoom({
@@ -160,13 +162,14 @@
     for (i in ccData) {
       for (j in readerLocations['features']) {
         if (((ccData[i].Location).search(readerLocations['features'][j].properties['name'])) >= 0) {
-          markers.push(L.marker((readerLocations['features'][j].geometry['coordinates']).reverse(), { time: ccData[i]["Date/Time"] }))
+          markers.push(L.marker((readerLocations['features'][j].geometry['coordinates']).reverse(), {time: ccData[i]["Date/Time"]}))
 
           //console.log(readerLocations['features'][j].properties['name'], readerLocations['features'][j].geometry['coordinates'])
           //console.log("YES", ccData[i].Location, readerLocations['features'][j])
         }
       }
     }
+
     layerGroup = L.layerGroup(markers.reverse());
 
     // Marker clustering ... gone wrong :(

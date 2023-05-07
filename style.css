@@ -253,7 +253,7 @@ input[type="submit"]:hover{
 
 .slider {
   position:relative;
-  bottom: 420px;
+  bottom: 357px;
   right: 1120px;
   font-size: 12px;
   font-weight:bold;
@@ -287,7 +287,7 @@ input[type="submit"]:hover{
 
 #file-container{
   display:flex;
-  padding: 100px 0px 10px 77px;
+  padding: 80px 0px 10px 77px;
   justify-content:center;
   align-self:center;
   position:relative;
@@ -306,7 +306,7 @@ input::file-selector-button {
 #ex-data{
   font-style:italic;
   position:relative;
-  top: 25px;
+  top: 7px;
   text-align:center;
   font-size: 13px;
 }
