@@ -243,22 +243,17 @@ input[type="submit"]:hover{
 /* VIZ (vizYourData) PAGE */
 #map {
   height: 100%
-  /* position:relative;
-  width: 800px;
-  height: 500px;
-  margin: auto;
-  padding-bottom: 20px;
-  padding-top: 170px; */
 }
 
 .slider {
   position:relative;
-  bottom: 357px;
+  bottom: 400px;
   right: 1120px;
   font-size: 12px;
   font-weight:bold;
    /* top right bottom left */
 }
+
 
 #infoBox{
   flex-direction:column;
@@ -277,6 +272,24 @@ input[type="submit"]:hover{
   padding: 20px;
 }
 
+#infoBox2{
+  flex-direction:column;
+  background-color: white;
+  box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+  border-radius: 0.28571429rem;
+  border: 1px solid rgba(34,36,38,.15);
+  z-index: 999;
+  position: absolute;
+  width: 27%;
+  top: 10px;
+  left: 10px;
+  height: 52%;
+  overflow: scroll;
+  font-family:optima;
+  padding: 20px;
+}
+
+
 #info{
   padding-top:40px;
   padding-left:5px;
@@ -284,10 +297,18 @@ input[type="submit"]:hover{
   text-align:center;
 }
 
+#info2{
+  padding-top:35px;
+  padding-left:5px;
+  font-size:14px;
+  text-align:center;
+}
+
+
 
 #file-container{
   display:flex;
-  padding: 80px 0px 10px 77px;
+  padding: 110px 0px 10px 77px;
   justify-content:center;
   align-self:center;
   position:relative;

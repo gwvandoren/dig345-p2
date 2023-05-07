@@ -1,12 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
 
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='style.css' />
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- JQuery CSS -->
+    <link rel='stylesheet' href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css" />
+
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+      integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+      integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    <!-- Leaflet.markercluster -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/"></script>
+
+    <!-- JQuery, JQuery UI -->
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+
+    <!-- Mobile touch support -->
+    <script
+      src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
+
+    <!-- Slider Control -->
+    <script src="./javascripts/SliderControl.js"> </script>
+
+    <!-- Reader Locations geoJSON -->
+    <script src="./javascripts/readerLocations.js"> </script>
+
+    <script src="./javascripts/gwenData.js"></script>
+
+    <title> see my data </title>
+
+  </head>
+
+  <body class="test">
+
+    <div class="container-fluid">
+      <div class ="col" id="infoBox2">
+        <img id="back-btn" onclick="window.location.href='vizYourData.html'" src="./images/back-iconRED.png"/>
+        <div class="row-sm-4" id="info2">
+          <p>  Use the slider that appears below to see my data during Fall 2022. The darker
+            the marker's shadow, the more frequent I swiped at that location.
+          <br>&nbsp;
+          <br> Not visualized are the descriptions in the file which describe whether access was granted,
+            denied (with the reason given in parentheses), or not completed.
+          <br>&nbsp;
+          <br> From my data, it is easy to see my most frequent locations are <i>Flowe</i>, <i>Ryburn</i>,
+          <i>Watson</i>, <i>Library</i>, and <i>Wall</i>.
+          <br>&nbsp;
+          <br> This visualization provides a story, with date and time, of where I have been during Fall 2022. The purpose of
+          this application is to think about the implications of the stories our data tells about us.
+
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div id="map"></div>
+    <script>
+      var sliderControl = null;
+
+      var mapOptions = {
+        center: [35.5012151629241, -80.84664812347926],
+        zoom: 17,
+        zoomControl:false
+      }
+
+
+      var map = L.map('map', mapOptions);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+
+      // Positions zoom controls
+      L.control.zoom({
+        position: 'topright',
+        minZoom:0
+      }).addTo(map);
+
+
+
+    </script>
+  </body>
+
 </html>
+
+<script>
+
+  vizData(ccData);
+  // Function matches CatCard data to readerLocations dictionary by name to retrieve location coordinates
+  function vizData() {
+    let markers = [];
+    for (i in ccData) {
+      for (j in readerLocations['features']) {
+        if (((ccData[i].Location).search(readerLocations['features'][j].properties['name'])) >= 0) {
+          markers.push(L.marker((readerLocations['features'][j].geometry['coordinates']).reverse(), {time: ccData[i]["Date/Time"]}))
+
+          //console.log(readerLocations['features'][j].properties['name'], readerLocations['features'][j].geometry['coordinates'])
+          //console.log("YES", ccData[i].Location, readerLocations['features'][j])
+        }
+      }
+    }
+
+    layerGroup = L.layerGroup(markers.reverse());
+
+    var sliderControl = L.control.sliderControl({
+      position: "bottomright",
+      layer: layerGroup,
+      range: false
+    });
+
+    map.addControl(sliderControl);
+
+    sliderControl.startSlider();
+
+  }
+
+</script>

@@ -34,10 +34,10 @@
       src="http://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
 
     <!-- Slider Control -->
-    <script src="./SliderControl.js"> </script>
+    <script src="./javascripts/SliderControl.js"> </script>
 
     <!-- Reader Locations geoJSON -->
-    <script src="./readerLocations.js"> </script>
+    <script src="./javascripts/readerLocations.js"> </script>
 
     <title>visualize your data</title>
 
@@ -47,7 +47,7 @@
 
     <div class="container-fluid">
       <div class ="col" id="infoBox">
-        <img id="back-btn" onclick="window.location.href='index.html'" src="backiconRED.png"/>
+        <img id="back-btn" onclick="window.location.href='index.html'" src="./images/back-iconRED.png"/>
         <div class="row-sm-4" id="info">
           <p> Upload below your CatCard locational data file (xlsx format) emailed to you by CatCard Services.
             <br> &nbsp;
@@ -149,7 +149,6 @@
         ccData[i]["Date/Time"] = bothDateTime.join(' ');
       }
 
-      //console.log(ccData);
       vizData(ccData);
     }
 
@@ -172,10 +171,6 @@
 
     layerGroup = L.layerGroup(markers.reverse());
 
-    // Marker clustering ... gone wrong :(
-    // var marCluster = L.markerClusterGroup();
-    // marCluster.addLayer(markers.reverse());
-    // map.addLayer(marCluster);
 
 
     var sliderControl = L.control.sliderControl({
