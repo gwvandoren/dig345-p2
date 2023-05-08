@@ -91,24 +91,20 @@ body.getYourData{
   box-sizing:content-box;
 }
 
-input[type=text], select, textarea {
+.text{
+  color: white;
+  font-family: Optima;
+  text-align: center;
+}
+
+.top-text{
   width: 97%;
-  padding: 12px;
-  border: 1px solid #ccc;
+  color: black;
   font-family: Optima;
   border-radius: 4px;
   resize: vertical;
-}
-
-textarea#message{
-  height:70px;
-}
-
-label {
-  padding: 12px 12px 12px 0;
-  display: inline-block;
-  font-family: Optima;
-  color: white;
+  text-align: center;
+  font-size: 20px;
 }
 
 #REMIND {
@@ -119,7 +115,8 @@ label {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  float: right;
+  display: flex;
+  justify-content:center;
   text-decoration:none;
 }
 
@@ -160,7 +157,7 @@ label {
   box-shadow:0 0 10px rgba(0,0,0,0.4);
 }
 
-input[type="submit"]{
+#closeRemind{
   font-family: Optima;
   background-color: black;
   color: white;
@@ -171,7 +168,7 @@ input[type="submit"]{
   text-decoration:none;
 }
 
-input[type="submit"]:hover{
+#closeRemind:hover{
   background-color: white;
   color:#ac1a2f;
 }
@@ -184,8 +181,8 @@ input[type="submit"]:hover{
 }
 
 .container-get {
-  width: 800px;
-  height:350px;
+  width: 500px;
+  height:  370px;
   padding: 20px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -218,7 +215,7 @@ input[type="submit"]:hover{
 
 /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
-  .col-25, .col-75, input[type=submit] {
+  .col-25, .col-75, #closeRemind {
     width: 100%;
     margin-top: 0;
   }

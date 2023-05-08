@@ -13,43 +13,41 @@
 
   <div class="container-wrapper">
     <div class="container-get">
-      <form action="mailto:chbradley@davidson.edu,gadaily@davidson.edu" enctype="text/plain" target="_top">
         <div class="row">
           <div class="col-50">
-            <label for="fname">email:</label>
-          </div>
-          <div class="col-50">
-            <input type="text" id="email" placeholder="Enter your Davidson email">
+            <p class="top-text"> <i> <b> Copy and paste the information below <br> in your email application </b></i></p>
           </div>
         </div>
         <div class="row">
           <div class="col-50">
-            <label for="subject">subject: </label>
-          </div>
-          <div class="col-50">
-            <input type="text" id="subject" value="Request for CatCard Data">
+            <p class="text"> <b>To</b>: chbradley@davidson.edu, gadaily@davidson.edu</p>
           </div>
         </div>
         <div class="row">
           <div class="col-50">
-            <label for="message">message: </label>
-          </div>
-          <div class="col-50">
-            <textarea id="message" name="subject"> I am emailing to request my personal CatCard locational data (card swipe data). Since it is my personal data, I do not need to sign a FERPA waiver. I would only like my swipe data since the start of the semester. Thank you and have a good one!</textarea>
+            <p class="text"> <b> Subject</b>: Request for CatCard Data </p>
           </div>
         </div>
         <div class="row">
-          <a id="REMIND" href="#reminder" data-reveal-id="popup">send</a>
+          <div class="col-50">
+            <p class="text"> <b>Message</b>:</p>
+          </div>
+          <div class="col-50">
+            <p class="text"> &emsp; I am emailing to request my personal CatCard locational data (card swipe data). Since it is my personal data, I do not need to sign a FERPA waiver. I would only like my swipe data since the start of the semester. Thank you and have a good one!</p>
+          </div>
+        </div>
+        <div class="row">
+          <a id="REMIND" href="#reminder" data-reveal-id="popup">reminder</a>
         </div>
       </div>
     </div>
         <div id="reminder">
           <div id="popup" class="reveal-popup">
               <p> Remember to come back to this site once you receive your CatCard data! </p>
-              <input type="submit" value="Got it, now send email">
+              <a id="closeRemind" href="getYourData.html"> Got it! </a>
+              <!-- <input type="submit" value="Got it, now send email"> -->
           </div>
         </div>
-      </form>
   </body>
 </html>
 
